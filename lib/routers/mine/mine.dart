@@ -25,8 +25,8 @@ class _MineState extends State<Mine> {
 
   Widget _avator() {
     return Container(
-      height: 90.0,
-      width: 90.0,
+      height: 100.0,
+      width: 100.0,
       decoration: BoxDecoration(
           color: Colors.white,
           boxShadow: [
@@ -37,6 +37,10 @@ class _MineState extends State<Mine> {
             )
           ],
           borderRadius: BorderRadius.circular(100.0)),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(50.0),
+        child: Image.asset('assets/image/avatar.jpg'),
+      ),
     );
   }
 
@@ -46,15 +50,15 @@ class _MineState extends State<Mine> {
     String url,
   }) {
     return Container(
-      height: 45.0,
+      height: 60.0,
       width: double.infinity,
       decoration: BoxDecoration(
-          border: Border(bottom: BorderSide(color: Colors.grey))),
-      child: FlatButton(
-        onPressed: () {},
-        child: Align(
-          alignment: Alignment.centerLeft,
-          child: Text(label),
+          border: Border(bottom: BorderSide(color: Colors.grey[300]))),
+      child: Align(
+        alignment: Alignment.centerLeft,
+        child: Text(
+          label,
+          style: TextStyle(fontSize: 15.0),
         ),
       ),
     );
@@ -64,27 +68,30 @@ class _MineState extends State<Mine> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
 
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: Column(
+    return Container(
+      child: Column(
         children: <Widget>[
           Stack(
-            alignment: AlignmentDirectional(0.0, 0.0),
+            alignment: AlignmentDirectional(0.0, 0.3),
             children: <Widget>[
               ClipPath(
                 clipper: TopCardClip(),
                 child: Container(
                   color: Colors.blue,
-                  height: 180.0,
+                  height: 230.0,
+                  child: Image.asset(
+                    'assets/image/avatar_bg.png',
+                    fit: BoxFit.fill,
+                  ),
                 ),
               ),
               Positioned(
-                top: 100,
+                top: 150,
                 child: Container(
-                  height: 70.0,
+                  height: 90.0,
                   width: width,
-                  color: Colors.red,
-                  padding: EdgeInsets.symmetric(horizontal: 20.0),
+                  // color: Colors.red,
+                  padding: EdgeInsets.symmetric(horizontal: 40.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
@@ -106,53 +113,47 @@ class _MineState extends State<Mine> {
               ),
               _avator(),
               Positioned(
-                bottom: 15.0,
+                bottom: 0.0,
                 child: Text(
-                  "God know",
+                  "登录/注册",
                   style: TextStyle(fontSize: 18.0),
                 ),
               ),
             ],
           ),
-          ClipPath(
-            clipper: BottomClip(),
-            child: Container(
-              color: Colors.grey,
-              height: 25.0,
-            ),
-          ),
-          Expanded(
-              child: Container(
-                  width: width,
-                  color: Colors.green,
-                  child: Padding(
-                    padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 0.0),
-                    child: Container(
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.only(
-                              topRight: Radius.circular(5.0),
-                              topLeft: Radius.circular(5.0)),
-                          boxShadow: [
-                            BoxShadow(
-                                offset: Offset(0.0, 1.0),
-                                blurRadius: 3.0,
-                                spreadRadius: 2.0)
-                          ]),
-                      child: Column(
-                        children: <Widget>[
-                          _menuLabel("我的浏览"),
-                          _menuLabel("我的发布"),
-                          _menuLabel("我的留言"),
-                        ],
-                      ),
+          // ClipPath(
+          //   clipper: BottomClip(),
+          //   child: Container(
+          //     color: Colors.grey,
+          //     height: 25.0,
+          //   ),
+          // ),
+          Container(
+              width: width,
+              // color: Colors.green,
+              child: Padding(
+                  padding: EdgeInsets.fromLTRB(20.0, 45.0, 20.0, 0.0),
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 20.0),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(5.0),
+                      // boxShadow: [
+                      //   BoxShadow(
+                      //       offset: Offset(0.0, 1.0),
+                      //       blurRadius: 10.0,
+                      //       color: Colors.grey[100],
+                      //       spreadRadius: 1.0)
+                      // ]
                     ),
-                  )
-                  // child: Container(
-                  //   width: 300.0,
-                  //   color: Colors.red,
-                  // ),
-                  ))
+                    child: Column(
+                      children: <Widget>[
+                        _menuLabel("我的浏览"),
+                        _menuLabel("我的发布"),
+                        _menuLabel("我的留言"),
+                      ],
+                    ),
+                  )))
         ],
       ),
     );

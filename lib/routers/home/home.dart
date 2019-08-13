@@ -28,28 +28,31 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: Colors.blueGrey,
-        body: Center(
-          child: Container(
-            width: 400.0,
-            child: Stack(
-              children: <Widget>[
-                DemoCarouse(currentPage),
-                Positioned.fill(
-                  child: PageView.builder(
-                    scrollDirection: Axis.vertical,
-                    itemCount: data.length,
-                    controller: controller,
-                    itemBuilder: (context, index) {
-                      return Container();
-                    },
-                  ),
-                )
-              ],
-            ),
-          ),
-        ));
+    return Container(
+        // height: 400.0,
+        // color: Colors.red,
+        // backgroundColor: Colors.blueGrey,
+        // padding: EdgeInsets.only(bottom: 40.0),
+        child: Center(
+      child: Container(
+        width: 400.0,
+        child: Stack(
+          children: <Widget>[
+            DemoCarouse(currentPage),
+            Positioned.fill(
+              child: PageView.builder(
+                scrollDirection: Axis.vertical,
+                itemCount: data.length,
+                controller: controller,
+                itemBuilder: (context, index) {
+                  return Container();
+                },
+              ),
+            )
+          ],
+        ),
+      ),
+    ));
   }
 }
 
@@ -107,16 +110,12 @@ class DemoCarouse extends StatelessWidget {
                 child: AspectRatio(
                   aspectRatio: CARD_RADIO,
                   child: Container(
-                    decoration: BoxDecoration(
-                      color: colorList[i],
-                      boxShadow: [
-                        BoxShadow(
+                    decoration: BoxDecoration(color: colorList[i], boxShadow: [
+                      BoxShadow(
                           color: Colors.black12,
                           offset: Offset(0.0, 8.0),
-                          blurRadius: 10.0
-                        )
-                      ]
-                    ),
+                          blurRadius: 10.0)
+                    ]),
                   ),
                 ),
               );

@@ -4,6 +4,8 @@ import 'package:his_hers_their/bottom_navigation.dart';
 import 'package:his_hers_their/router.dart';
 import 'package:his_hers_their/routers/article/article_detail.dart';
 import 'package:his_hers_their/routers/article/comment_list.dart';
+import 'package:his_hers_their/routers/home/home.dart';
+import 'package:his_hers_their/routers/mine/mine.dart';
 import 'package:his_hers_their/routers/passport/login.dart';
 import 'package:oktoast/oktoast.dart';
 
@@ -28,9 +30,19 @@ class MyApp extends StatelessWidget {
         initIndex: 0,
         activeColor: Colors.green,
         children: [
-          MenuBarModel(icon: Icons.label, label: "标题", child: Container()),
-          MenuBarModel(icon: Icons.language, label: "士大", child: Container()),
-          MenuBarModel(icon: Icons.leak_add, label: "方怪", child: Container())
+          MenuBarModel(
+              icon: Icons.label,
+              child:Home()),
+          MenuBarModel(
+              icon: Icons.language,
+              child: Container(
+                child: Center(
+                  child: Text("22222"),
+                ),
+              )),
+          MenuBarModel(
+              icon: Icons.leak_add,
+              child: Mine())
         ],
       ),
       debugShowCheckedModeBanner: false,
