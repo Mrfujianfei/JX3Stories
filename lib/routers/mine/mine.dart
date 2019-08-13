@@ -79,6 +79,7 @@ class _MineState extends State<Mine> {
                 child: Container(
                   color: Colors.blue,
                   height: 230.0,
+                  width: width,
                   child: Image.asset(
                     'assets/image/avatar_bg.png',
                     fit: BoxFit.fill,
@@ -90,7 +91,7 @@ class _MineState extends State<Mine> {
                 child: Container(
                   height: 90.0,
                   width: width,
-                  // color: Colors.red,
+                  // color: Colors.wh,
                   padding: EdgeInsets.symmetric(horizontal: 40.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:his_hers_their/components/article_card.dart';
 import 'package:his_hers_their/components/slide_card.dart';
 import 'package:his_hers_their/events/event_bus.dart';
 
@@ -35,7 +36,7 @@ class _HomeState extends State<Home> {
         // padding: EdgeInsets.only(bottom: 40.0),
         child: Center(
       child: Container(
-        width: 400.0,
+        width: double.infinity,
         child: Stack(
           children: <Widget>[
             DemoCarouse(currentPage),
@@ -99,7 +100,7 @@ class DemoCarouse extends StatelessWidget {
               var delt = i - _current;
               var isOnRight = delt > 0;
               var top = PADDING_BASE +
-                  max(maxTop - interDur * -delt * (isOnRight ? 30 : 1.0), 0.0);
+                  max(maxTop - interDur * -delt * (isOnRight ? 40 : 1.0), 0.0);
               var item = Positioned.directional(
                 end: PADDING_BASE +
                     PASSING_INTER * max(isOnRight ? 0.0 : -delt, 0.0),
@@ -110,12 +111,18 @@ class DemoCarouse extends StatelessWidget {
                 child: AspectRatio(
                   aspectRatio: CARD_RADIO,
                   child: Container(
-                    decoration: BoxDecoration(color: colorList[i], boxShadow: [
+                    decoration: BoxDecoration(color: Colors.transparent, boxShadow: [
                       BoxShadow(
                           color: Colors.black12,
                           offset: Offset(0.0, 8.0),
                           blurRadius: 10.0)
                     ]),
+                    child: ArticleCard(
+                      title: '你看, 我正通过失去你 而走向你 渐行渐远',
+                      url: 'assets/image/article_pic.png',
+                      star: '300',
+                      sketch: "说好带你流浪，而我去半路返航，坠落自责的海洋...",
+                    ),
                   ),
                 ),
               );

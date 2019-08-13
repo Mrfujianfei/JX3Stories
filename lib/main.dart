@@ -10,6 +10,8 @@ import 'package:his_hers_their/routers/passport/login.dart';
 import 'package:oktoast/oktoast.dart';
 
 import 'components/cool-bottom_navigation.dart';
+import 'routers/catagory/article_list.dart';
+import 'routers/catagory/catagory.dart';
 
 void main() => runApp(MyApp());
 
@@ -26,23 +28,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return OKToast(
         child: MaterialApp(
-      home: CoolBottomNavigation(
+      home: 
+      // ArticleList(),
+       CoolBottomNavigation(
         initIndex: 0,
         activeColor: Colors.green,
         children: [
-          MenuBarModel(
-              icon: Icons.label,
-              child:Home()),
-          MenuBarModel(
-              icon: Icons.language,
-              child: Container(
-                child: Center(
-                  child: Text("22222"),
-                ),
-              )),
-          MenuBarModel(
-              icon: Icons.leak_add,
-              child: Mine())
+          MenuBarModel(icon: Icons.label, child: Home()),
+          MenuBarModel(icon: Icons.language, child: Catagory()),
+          MenuBarModel(icon: Icons.leak_add, child: Mine())
         ],
       ),
       debugShowCheckedModeBanner: false,
