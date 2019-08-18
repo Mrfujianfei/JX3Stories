@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:his_hers_their/components/input_field.dart';
-import 'package:his_hers_their/theme/color.dart';
-import 'package:his_hers_their/theme/fontsize.dart';
 
-class Register extends StatefulWidget {
+class ForgetPassword extends StatefulWidget {
   @override
-  _RegisterState createState() => _RegisterState();
+  _ForgetPasswordState createState() => _ForgetPasswordState();
 }
 
-class _RegisterState extends State<Register> {
+class _ForgetPasswordState extends State<ForgetPassword> {
   final username = TextEditingController();
-  final password = TextEditingController();
-
+  final phone = TextEditingController();
+  final newPassword = TextEditingController();
+  final checkPassword = TextEditingController();
+  int step = 1;
   @override
   void initState() {
     // TODO: implement initState
@@ -23,9 +22,28 @@ class _RegisterState extends State<Register> {
     Navigator.of(context).pop();
   }
 
-  _toForgetPassword() {}
+  _submitAction() {
+    if (step == 1) {
+      setState(() {
+        step = 2;
+      });
+      return;
+    }
 
-  _back() {
+    _submitData();
+  }
+
+  _submitData() {
+    print('提交数据');
+  }
+
+  _preview() {
+    setState(() {
+      step = 1;
+    });
+  }
+
+  _back(){
     Navigator.of(context).pop();
   }
 
@@ -64,67 +82,67 @@ class _RegisterState extends State<Register> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text('注册',
+                    Text('忘记密码',
                         style: TextStyle(
                             fontSize: 20.0, fontWeight: FontWeight.w600)),
                     Padding(
                       padding: EdgeInsets.only(top: 30.0),
                       child: Text(
-                        '账号',
+                        step == 1 ? '账号' : '新密码',
                         style:
                             TextStyle(fontSize: 14.0, color: Colors.grey[500]),
                       ),
                     ),
-                    TextField(
-                      controller: username,
-                      decoration: InputDecoration(
-                          contentPadding: EdgeInsets.symmetric(vertical: 6.0),
-                          hintText: "",
-                          hintStyle: TextStyle(
-                            fontSize: 12.0,
-                          )),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 20.0),
-                      child: Text(
-                        '密码',
-                        style:
-                            TextStyle(fontSize: 14.0, color: Colors.grey[500]),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 0.0),
-                      child: SizedBox(
-                        child: TextField(
-                          controller: password,
-                          obscureText: true,
-                          decoration: InputDecoration(
-                            contentPadding: EdgeInsets.symmetric(vertical: 6.0),
-                            hintText: "",
-                            hintStyle: TextStyle(
-                              fontSize: 12.0,
-                            ),
+                    step == 1
+                        ? TextField(
+                            controller: username,
+                            decoration: InputDecoration(
+                                contentPadding:
+                                    EdgeInsets.symmetric(vertical: 6.0),
+                                hintText: "",
+                                hintStyle: TextStyle(
+                                  fontSize: 12.0,
+                                )),
+                          )
+                        : TextField(
+                            controller: newPassword,
+                            decoration: InputDecoration(
+                                contentPadding:
+                                    EdgeInsets.symmetric(vertical: 6.0),
+                                hintText: "",
+                                hintStyle: TextStyle(
+                                  fontSize: 12.0,
+                                )),
                           ),
-                        ),
-                      ),
-                    ),
                     Padding(
                       padding: EdgeInsets.only(top: 30.0),
                       child: Text(
-                        '手机号',
+                        step == 1 ? '手机号' : '确认密码',
                         style:
                             TextStyle(fontSize: 14.0, color: Colors.grey[500]),
                       ),
                     ),
-                    TextField(
-                      controller: username,
-                      decoration: InputDecoration(
-                          contentPadding: EdgeInsets.symmetric(vertical: 6.0),
-                          hintText: "",
-                          hintStyle: TextStyle(
-                            fontSize: 12.0,
-                          )),
-                    ),
+                    step == 1
+                        ? TextField(
+                            controller: phone,
+                            decoration: InputDecoration(
+                                contentPadding:
+                                    EdgeInsets.symmetric(vertical: 6.0),
+                                hintText: "",
+                                hintStyle: TextStyle(
+                                  fontSize: 12.0,
+                                )),
+                          )
+                        : TextField(
+                            controller: checkPassword,
+                            decoration: InputDecoration(
+                                contentPadding:
+                                    EdgeInsets.symmetric(vertical: 6.0),
+                                hintText: "",
+                                hintStyle: TextStyle(
+                                  fontSize: 12.0,
+                                )),
+                          ),
                   ],
                 ),
               ),
@@ -132,13 +150,66 @@ class _RegisterState extends State<Register> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: <Widget>[
-                  GestureDetector(
-                    onTap: _back,
-                    child: Padding(
-                      padding: EdgeInsets.only(bottom: 10.0, left: 10.0),
-                      child: Text('返回'),
-                    ),
-                  ),
+                  step == 1
+                      ? GestureDetector(
+                        onTap: _back,
+                        child: Padding(
+                          padding: EdgeInsets.only(bottom: 10.0,left: 10.0),
+                          child: Text("返回"),
+                        ),
+                      )
+                      : Stack(
+                          alignment: AlignmentDirectional(0.0, 0.7),
+                          children: <Widget>[
+                            Positioned(
+                              child: Container(
+                                width: 110.0,
+                                height: 40.0,
+                                decoration: BoxDecoration(boxShadow: [
+                                  BoxShadow(
+                                      color: Colors.lightBlue[200],
+                                      offset: Offset(0.0, 8.0),
+                                      blurRadius: 10.0)
+                                ]),
+                              ),
+                            ),
+                            Container(
+                                width: 140.0,
+                                height: 40.0,
+                                margin: EdgeInsets.only(top: 20.0),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(5.0),
+                                    gradient: LinearGradient(colors: [
+                                      Colors.blueAccent,
+                                      Colors.cyanAccent,
+                                    ])),
+                                child: FlatButton(
+                                  padding: EdgeInsets.all(0),
+                                  onPressed: _preview,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: <Widget>[
+                                      Text(
+                                        "上一步",
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 16.0),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.only(left: 10.0),
+                                        child: Icon(
+                                          Icons.arrow_back,
+                                          size: 16.0,
+                                          color: Colors.white,
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ))
+                          ],
+                        ),
                   Stack(
                     alignment: AlignmentDirectional(0.0, 0.7),
                     children: <Widget>[
@@ -166,13 +237,13 @@ class _RegisterState extends State<Register> {
                               ])),
                           child: FlatButton(
                             padding: EdgeInsets.all(0),
-                            onPressed: () {},
+                            onPressed: _submitAction,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: <Widget>[
                                 Text(
-                                  "提交",
+                                  step == 1 ? "下一步" : "提交",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 16.0),
                                 ),

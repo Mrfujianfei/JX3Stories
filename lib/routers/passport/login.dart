@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:his_hers_their/components/custome_slide_up.dart';
 import 'package:his_hers_their/components/input_field.dart';
 import 'package:his_hers_their/components/msg_service.dart';
+import 'package:his_hers_their/routers/passport/forget_password.dart';
+import 'package:his_hers_their/routers/passport/register.dart';
 import 'package:his_hers_their/theme/color.dart';
 import 'package:his_hers_their/theme/fontsize.dart';
 import 'package:oktoast/oktoast.dart';
+import 'package:flutter/cupertino.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -19,6 +23,17 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
     // TODO: implement initState
 
     super.initState();
+  }
+
+  _toSignUp() {
+    Navigator.of(context).push(CustomeSlideUpRoute(Register()));
+  }
+
+  _toForgetPassword() {
+    Navigator.of(context)
+        .push(CupertinoPageRoute(builder: (BuildContext context) {
+      return ForgetPassword();
+    }));
   }
 
   @override
@@ -106,7 +121,7 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
                         Padding(
                           padding: EdgeInsets.only(top: 20.0),
                           child: InkWell(
-                            onTap: () {},
+                            onTap: _toForgetPassword,
                             child: Text(
                               "忘记密码?",
                               style: TextStyle(
@@ -208,7 +223,7 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
                 child: FlatButton(
                   padding: EdgeInsets.all(0),
                   shape: CircleBorder(),
-                  onPressed: () {},
+                  onPressed: _toSignUp,
                   child: Icon(Icons.arrow_downward),
                 ),
               )
