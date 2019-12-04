@@ -1,4 +1,4 @@
-# his_hers_their
+# JX3stories
 
 A new Flutter project.
 
